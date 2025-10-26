@@ -1,0 +1,818 @@
+/* Import Google Font - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* --- Global & Reset Styles --- */
+
+:root {
+  /* Colors */
+  --color-indigo-600: #4f46e5;
+  --color-indigo-700: #4338ca;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #059669;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-gray-800: #1f2937;
+  --color-gray-600: #4b5563;
+  --color-gray-500: #6b7280;
+  --color-gray-300: #d1d5db;
+  --color-gray-200: #e5e7eb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-50: #f9fafb;
+  --color-white: #ffffff;
+  
+  /* Backgrounds & Alerts */
+  --bg-indigo-50: #eef2ff;
+  --bg-green-100: #d1fae5;
+  --bg-red-100: #fee2e2;
+  --bg-indigo-100: #e0e7ff;
+  --text-indigo-800: #3730a3;
+  --text-green-700: #047857;
+  --text-red-700: #b91c1c;
+  --text-indigo-700: #4338ca;
+}
+
+/* Base styles for the entire app */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-gray-50);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-main-layout {
+  min-height: 100vh;
+  background-color: var(--color-gray-50);
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-main-content {
+  padding-bottom: 3rem; /* pb-12 */
+}
+
+/* Focus state for form elements (mimics Tailwind ring) */
+input:focus, select:focus, button:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-indigo-600);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.4); /* Tailwind ring-indigo-500/40 */
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+/* --- Utility Classes (for components that rely on specific display properties) --- */
+
+.flex { display: flex; }
+.justify-between { justify-content: space-between; }
+.items-center { align-items: center; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.w-full { width: 100%; }
+.space-y-5 > * + *, .space-y-4 > * + * { margin-top: 1.25rem; }
+.space-y-3 > * + * { margin-top: 0.75rem; }
+.space-x-4 > * + * { margin-left: 1rem; }
+.space-x-3 > * + * { margin-left: 0.75rem; }
+
+
+/* --- Button Styles (Abstracted) --- */
+
+.btn {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 0.5rem;
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Navbar Buttons */
+.btn-dashboard {
+  background-color: var(--color-indigo-600);
+  color: var(--color-white);
+}
+.btn-dashboard:hover {
+  background-color: var(--color-indigo-700);
+}
+
+.btn-logout {
+  background-color: var(--color-red-600);
+  color: var(--color-white);
+}
+.btn-logout:hover {
+  background-color: var(--color-red-700);
+}
+
+.btn-nav-login {
+  padding: 0.25rem 0.75rem;
+  color: var(--color-gray-600);
+  background: none;
+  box-shadow: none;
+}
+.btn-nav-login:hover {
+  color: var(--color-indigo-600);
+}
+
+.btn-nav-signup {
+  padding: 0.25rem 1rem;
+  background-color: var(--color-green-500);
+  color: var(--color-white);
+  box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.1), 0 2px 4px -2px rgba(34, 197, 94, 0.1);
+}
+.btn-nav-signup:hover {
+  background-color: var(--color-green-600);
+}
+
+/* Auth Form Button */
+.btn-auth-submit {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: var(--color-indigo-600);
+  color: var(--color-white);
+  font-weight: bold;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+.btn-auth-submit:hover {
+  background-color: var(--color-indigo-700);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+.btn-auth-submit:disabled {
+  background-color: var(--color-indigo-600);
+}
+
+/* Patient Dashboard Booking Button */
+.btn-book-appointment {
+  padding: 0.75rem;
+  background-color: var(--color-green-600);
+  color: var(--color-white);
+  font-weight: bold;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+.btn-book-appointment:hover {
+  background-color: var(--color-green-700);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Patient Dashboard Cancel Button */
+.btn-cancel-appointment {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  background-color: #ef4444; /* red-500 */
+  color: var(--color-white);
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+.btn-cancel-appointment:hover {
+  background-color: #dc2626; /* red-600 */
+}
+
+/* Doctor Dashboard Availability Button */
+.btn-update-availability {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: var(--color-indigo-600);
+  color: var(--color-white);
+  font-weight: bold;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.btn-update-availability:hover {
+  background-color: var(--color-indigo-700);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- Form Element Styles (Abstracted) --- */
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 0.75rem; /* rounded-xl */
+  transition: all 150ms ease-in-out;
+}
+.form-input:disabled {
+    background-color: var(--color-gray-100);
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  color: var(--color-gray-700);
+  font-weight: 500;
+}
+
+.form-select {
+  background-color: var(--color-white);
+}
+
+/* Patient Dashboard specific inputs */
+.form-select-lg, .form-input-lg {
+  padding: 0.75rem;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 0.5rem; /* rounded-lg */
+  background-color: var(--color-white);
+  transition: all 150ms ease-in-out;
+}
+.form-select-lg:disabled, .form-input-lg:disabled {
+    background-color: var(--color-gray-100);
+}
+
+
+/* --- Navbar Component Styles --- */
+
+.nav-bar {
+  background-color: var(--color-white);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.nav-container {
+  max-width: 1280px; /* lg:max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+}
+
+.nav-brand-group {
+  display: flex;
+  align-items: center;
+}
+
+.nav-brand-name {
+  color: var(--color-indigo-600);
+  font-size: 1.5rem;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.05em; /* tracking-wider */
+}
+
+.brand-suffix {
+  color: var(--color-green-500);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 0.5rem; /* space-x-2 */
+  align-items: center;
+}
+
+@media (min-width: 640px) { /* sm breakpoint */
+  .nav-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .nav-actions {
+    gap: 1rem; /* sm:space-x-4 */
+  }
+}
+
+.user-info {
+  color: var(--color-gray-600);
+  font-size: 0.875rem;
+  display: none;
+  max-width: 150px;
+}
+@media (min-width: 768px) { /* md breakpoint */
+  .user-info {
+    display: inline-block;
+  }
+}
+
+/* --- Card Component Styles --- */
+
+.card-component {
+  background-color: var(--color-white);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem; /* rounded-2xl */
+  padding: 1.5rem; /* p-6 */
+}
+@media (min-width: 640px) { /* sm breakpoint */
+  .card-component {
+    padding: 2rem; /* sm:p-8 */
+  }
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: var(--color-gray-800);
+  border-bottom: 1px solid var(--color-gray-200);
+  padding-bottom: 0.75rem;
+}
+
+/* --- Toast Component Styles --- */
+
+.toast-message {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 50;
+  padding: 1rem;
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  max-width: 24rem;
+  transition: opacity 300ms ease-in-out;
+  border: 1px solid;
+}
+
+.toast-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toast-title {
+  font-weight: 600;
+}
+
+.toast-close-btn {
+  color: currentColor;
+  opacity: 0.7;
+  transition: opacity 150ms;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-left: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.toast-close-btn:hover {
+  opacity: 1;
+}
+
+.toast-text {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}
+
+/* Toast Type-Specific Styles */
+.toast-success {
+  background-color: var(--bg-green-100);
+  border-color: #34d399; /* green-400 */
+  color: var(--text-green-700);
+}
+
+.toast-error {
+  background-color: var(--bg-red-100);
+  border-color: #f87171; /* red-400 */
+  color: var(--color-red-700);
+}
+
+.toast-info {
+  background-color: var(--bg-indigo-100);
+  border-color: #818cf8; /* indigo-400 */
+  color: var(--text-indigo-700);
+}
+
+
+/* --- HomePage Styles --- */
+
+.homepage-hero {
+  min-height: calc(100vh - 4rem); /* 64px = h-16 (navbar height) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-gray-50);
+}
+
+.hero-title {
+  font-size: 3.75rem; /* 6xl */
+  font-weight: 900;
+  color: var(--color-indigo-700);
+  margin-bottom: 1rem;
+  letter-spacing: -0.05em; /* tracking-tighter */
+}
+.hero-title-suffix {
+  color: var(--color-green-500);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem; /* xl */
+  color: var(--color-gray-600);
+  margin-bottom: 2.5rem;
+  max-width: 32rem; /* max-w-xl */
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem; /* space-y-4 */
+}
+@media (min-width: 640px) { /* sm breakpoint */
+  .hero-actions {
+    flex-direction: row;
+    gap: 1.5rem; /* sm:space-x-6 */
+  }
+}
+
+/* Hero Action Buttons */
+.btn-hero-primary, .btn-hero-secondary, .btn-hero-dashboard {
+  padding: 1rem 2.5rem; /* px-10 py-4 */
+  font-size: 1.125rem; /* lg */
+  font-weight: 500;
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  transition: all 300ms ease;
+  width: 100%;
+}
+@media (min-width: 640px) { /* sm breakpoint */
+  .btn-hero-primary, .btn-hero-secondary, .btn-hero-dashboard {
+    width: auto;
+  }
+  .btn-hero-dashboard {
+      padding: 1rem 3rem; /* px-12 */
+  }
+}
+
+.btn-hero-primary {
+  color: var(--color-white);
+  background-color: var(--color-indigo-600);
+}
+.btn-hero-primary:hover {
+  background-color: var(--color-indigo-700);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-hero-secondary {
+  color: var(--color-indigo-600);
+  background-color: var(--color-white);
+  border: 2px solid var(--color-indigo-600);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.btn-hero-secondary:hover {
+  background-color: #eef2ff; /* indigo-50 */
+}
+
+.btn-hero-dashboard {
+  color: var(--color-white);
+  background-color: var(--color-green-600);
+}
+.btn-hero-dashboard:hover {
+  background-color: var(--color-green-700);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- AuthForm Styles --- */
+
+.auth-page-wrapper {
+  max-width: 32rem; /* max-w-lg */
+  margin: 3rem auto; /* my-12 */
+  padding: 1rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* space-y-5 */
+}
+
+.auth-toggle-text {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--color-gray-600);
+}
+
+.auth-toggle-link {
+  color: var(--color-indigo-600);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 150ms;
+}
+.auth-toggle-link:hover {
+  color: var(--color-indigo-700);
+}
+
+
+/* --- Dashboard General Styles --- */
+
+.dashboard-container {
+  max-width: 1280px; /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; /* space-y-10 */
+}
+@media (min-width: 640px) { /* sm breakpoint */
+  .dashboard-container {
+    padding: 1.5rem;
+  }
+}
+
+.dashboard-header {
+  font-size: 1.875rem; /* 3xl */
+  font-weight: 800;
+  color: var(--color-gray-800);
+}
+
+.patient-name {
+    color: var(--color-indigo-600);
+}
+
+.doctor-name {
+    color: var(--color-green-600);
+}
+
+.loading-text {
+  color: var(--color-indigo-600);
+  font-weight: 500;
+  text-align: center;
+}
+
+.empty-list-message {
+  color: var(--color-gray-500);
+  font-size: 1.125rem; /* lg */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+
+/* --- Patient Dashboard Specific Styles --- */
+
+.book-appointment-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+@media (min-width: 768px) { /* md breakpoint */
+  .book-appointment-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .book-appointment-grid > *:nth-child(1) { /* Doctor select */
+    grid-column: span 1 / span 1;
+  }
+}
+
+.no-slot-feedback {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #ef4444; /* red-500 */
+    font-weight: 500;
+}
+
+.appointment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* space-y-4 */
+}
+
+.appointment-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-left-width: 4px;
+  border-left-style: solid;
+  transition: all 300ms;
+}
+.appointment-item:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 640px) { /* sm breakpoint */
+  .appointment-item {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.appointment-details {
+    min-width: 0;
+    flex: 1;
+}
+
+.appointment-doctor {
+  font-weight: bold;
+  font-size: 1.25rem; /* xl */
+  color: var(--color-gray-800);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.appointment-time-info {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+  margin-top: 0.25rem;
+}
+
+.appointment-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* space-x-3 */
+  margin-top: 0.75rem;
+}
+@media (min-width: 640px) { /* sm breakpoint */
+  .appointment-actions {
+    margin-top: 0;
+  }
+}
+
+.appointment-status-badge {
+  padding: 0.25rem 1rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 9999px; /* rounded-full */
+  width: fit-content;
+}
+
+/* Appointment Status Colors */
+.appointment-booked {
+  background-color: var(--bg-indigo-50);
+  border-left-color: var(--color-indigo-600);
+}
+.appointment-booked .appointment-status-badge {
+  background-color: #c7d2fe; /* indigo-200 */
+  color: var(--text-indigo-800);
+}
+
+.appointment-cancelled {
+  background-color: var(--bg-red-100);
+  border-left-color: var(--color-red-600);
+}
+.appointment-cancelled .appointment-status-badge {
+  background-color: #fecaca; /* red-200 */
+  color: var(--color-red-700);
+}
+
+
+/* --- Doctor Dashboard Specific Styles --- */
+
+.doctor-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+}
+@media (min-width: 1024px) { /* lg breakpoint */
+  .doctor-dashboard-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .availability-form-card {
+    grid-column: span 2 / span 2;
+  }
+  .availability-summary-card {
+    grid-column: span 1 / span 1;
+  }
+}
+
+.availability-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* space-y-4 */
+}
+
+.availability-form-help-text {
+    font-size: 0.875rem;
+    color: var(--color-gray-500);
+}
+
+.availability-form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+@media (min-width: 640px) { /* sm breakpoint */
+    .availability-form-inputs {
+        flex-direction: row;
+    }
+}
+/* Flex-1 and flex-2 mimic (approximate) */
+.availability-form-inputs input:first-child { flex: 1; }
+.availability-form-inputs input:last-child { flex: 2; }
+
+
+.availability-list-wrapper {
+  max-height: 20rem; /* max-h-80 */
+  overflow-y: auto;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 1rem;
+  background-color: var(--color-gray-50);
+}
+
+.availability-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* space-y-3 */
+}
+
+.availability-item {
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--color-gray-200);
+  padding-bottom: 0.5rem;
+}
+
+.availability-date {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-indigo-700);
+}
+
+.availability-slots {
+  color: var(--color-gray-600);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.doctor-appointments-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+}
+@media (min-width: 768px) { /* md breakpoint */
+    .doctor-appointments-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (min-width: 1280px) { /* xl breakpoint */
+    .doctor-appointments-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+.appointment-card {
+  padding: 1rem;
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-left-width: 4px;
+  border-left-style: solid;
+}
+
+.appointment-booked-card {
+    background-color: #dcfce7; /* green-100 */
+    border-left-color: var(--color-green-500);
+}
+.appointment-booked-card .appointment-card-status-badge {
+    background-color: #a7f3d0; /* green-200 */
+    color: var(--color-green-800);
+}
+
+.appointment-cancelled-card {
+    background-color: var(--bg-red-100);
+    border-left-color: var(--color-red-600);
+}
+.appointment-cancelled-card .appointment-card-status-badge {
+    background-color: #fecaca; /* red-200 */
+    color: var(--color-red-700);
+}
+
+.appointment-card-patient-name {
+    font-weight: bold;
+    font-size: 1.125rem; /* lg */
+    color: var(--color-gray-800);
+    margin-bottom: 0.25rem;
+}
+
+.appointment-card-time {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+}
+
+.appointment-card-status-badge {
+    margin-top: 0.5rem;
+    padding: 0.125rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 9999px;
+    width: fit-content;
+    display: block;
+}
