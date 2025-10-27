@@ -1,3 +1,5 @@
+🏥 Healthcare Appointment System
+
 A full-stack hospital appointment booking application that allows patients to book appointments with doctors and provides admin/doctor functionalities to manage schedules.
 
 🌟 Features
@@ -41,3 +43,18 @@ healthcare-appointment-system/
         ├── App.jsx   # Main app component
         ├── main.jsx  # React entry point
         └── assets/   # Images, styles, etc.
+
+⚡ Setup Instructions
+Backend
+cd backend
+npm install
+cp .env.example .env   # Add your DB URI and JWT secret
+node server.js         # Or nodemon server.js
+
+Frontend
+cd frontend
+npm install
+npm start
+
+
+Open http://localhost:3000 to access the app.
